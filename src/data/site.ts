@@ -1,12 +1,13 @@
 // Everything personal about the site lives here. Edit this file to make the portfolio yours.
 
 export const site = {
+  siteName: 'Ovais Oozeer',
   name: 'Ovais',
-  role: 'Generalist Solution Architect',
+  role: 'əʊveɪs | he/him',
   email: 'ovais@expertlypragmatic.com',
   phone: { display: '07739 400855', href: 'tel:+447739400855' },
   calendarUrl: 'https://calendar.app.google/PteCMAz5AeiBRbrp9',
-  tagline: 'Choose the theme that best describes the reason for your visit...',
+  tagline: 'I\'m a Generalist Solution Architect. Please choose the theme that best describes the reason for your visit...',
   description:
     'Portfolio of Ovais Oozeer, a software developer building web applications, APIs and developer tooling.',
   resumeUrl: '/cv.pdf', // leave empty to hide the button
