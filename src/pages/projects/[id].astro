@@ -1,0 +1,94 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, summary, role, client, tags, link } = project.data;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={title} description={summary}>
+  <article class="section container project">
+    <a class="back" href="/projects">← All projects</a>
+    <header>
+      <p class="eyebrow">{client ? `${client} · ${role}` : role}</p>
+      <h1>{title}</h1>
+      <p class="summary">{summary}</p>
+      <ul class="tags">
+        {tags.map((tag) => <li class="tag">{tag}</li>)}
+      </ul>
+      {
+        link && (
+          <div class="links">
+            <a class="btn btn-primary" href={link.href}>{link.label}</a>
+          </div>
+        )
+      }
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    max-width: 46rem;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3rem);
+    margin: 0;
+  }
+
+  .summary {
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .content {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .content :global(h2) {
+    font-size: 1.35rem;
+    margin: 2.25rem 0 0.75rem;
+  }
+
+  .content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .content :global(ul) {
+    padding-left: 1.2rem;
+  }
+
+  .content :global(li + li) {
+    margin-top: 0.35rem;
+  }
+</style>

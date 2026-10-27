@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, summary, tags, role, client } = project.data;
+---
+
+<article class="card" data-tags={tags.join(',')}>
+  <p class="meta">{client ? `${client} · ${role}` : role}</p>
+  <h3><a href={`/projects/${project.id}`}>{title}</a></h3>
+  <p class="summary">{summary}</p>
+  <ul class="tags">
+    {tags.map((tag) => <li class="tag">{tag}</li>)}
+  </ul>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .meta {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  /* Make the whole card clickable via the title link. */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+  }
+
+  .summary {
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+    flex-grow: 1;
+  }
+</style>

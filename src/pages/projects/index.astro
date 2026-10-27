@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { otherClients } from '../../data/site';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const tags = [...new Set(projects.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout title="Projects" description="Things I've built: apps, services, tools and experiments.">
+  <section class="section container">
+    <p class="eyebrow">Portfolio</p>
+    <h1>Projects</h1>
+    <p class="intro">Things I've built: apps, services, tools and experiments.</p>
+
+    <div class="filters" role="group" aria-label="Filter by technology">
+      <button type="button" class="filter" data-filter="" aria-pressed="true">All</button>
+      {
+        tags.map((tag) => (
+          <button type="button" class="filter" data-filter={tag} aria-pressed="false">
+            {tag}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="grid" id="project-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+
+    <h2 class="others-title">Selected other clients</h2>
+    <ul class="others">
+      {
+        otherClients.map(({ client, project, role, href }) => (
+          <li>
+            <span class="client">{href ? <a href={href}>{client}</a> : client}</span>
+            <span class="project">{project}</span>
+            <span class="role">{role}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter');
+  const cards = document.querySelectorAll<HTMLElement>('#project-grid [data-tags]');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter ?? '';
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      cards.forEach((card) => {
+        const tags = card.dataset.tags?.split(',') ?? [];
+        card.hidden = filter !== '' && !tags.includes(filter);
+      });
+    });
+  });
+</script>
+
+<style>
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    margin: 0;
+  }
+
+  .intro {
+    color: var(--muted);
+    margin: 0.5rem 0 2rem;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+
+  .filter[aria-pressed='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1.25rem;
+  }
+
+  .grid :global([hidden]) {
+    display: none;
+  }
+
+  .others-title {
+    font-size: 1.4rem;
+    margin: 4rem 0 1rem;
+  }
+
+  .others {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .others li {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr 0.8fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .client {
+    font-weight: 600;
+  }
+
+  .project {
+    color: var(--muted);
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .others li {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
+
+    .role {
+      text-align: left;
+    }
+  }
+</style>
