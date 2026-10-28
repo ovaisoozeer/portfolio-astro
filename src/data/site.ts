@@ -31,6 +31,28 @@ export const about = {
       types: 'As a hands-on tech lead, managing goals and expectations for the team, coaching individuals, and ensuring quality output is sustainable.'
     },
   ],
+  interests: [
+    {
+      title: 'Content',
+      description: 'A substack exists with my weird and wonderful thoughts.',
+      href: 'https://devgutfeel.substack.com/'
+    },
+    {
+      title: 'Events',
+      description: 'Currently running a meet-up for inspired folks in need of guidance. On Luma, search for "Incomplete Ideas."',
+      href: 'https://luma.com/'
+    },
+    {
+      title: 'Generalist World',
+      description: 'A community of multi-disciplinary professionals.',
+      href: 'https://generalist.world/'
+    },
+    {
+      title: 'Ramen Club',
+      description: 'Founder community leaning heavily into AI.',
+      href: 'https://generalist.world/'
+    },
+  ],
 };
 
 // Shorter engagements listed under "Selected other clients" on the projects page.
