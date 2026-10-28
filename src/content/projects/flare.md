@@ -3,7 +3,7 @@ title: Flare
 summary: A slack plugin for more effective team comms. Created to support one of my meet-ups.
 role: Product Owner
 order: 1
-tags: [Slack]
+tags: [Slack, FREE]
 link:
   label: Add to Slack
   href: https://slack-flare.onrender.com/slack/install
