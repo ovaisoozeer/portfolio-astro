@@ -91,7 +91,7 @@ code {
 }
 
 .section {
-  padding-block: 4.5rem;
+  padding-block: 2.25rem 4.5rem;
 }
 
 .section-title {
