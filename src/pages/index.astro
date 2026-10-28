@@ -36,14 +36,14 @@ const featured = (await getCollection('projects', ({ data }) => data.featured))
         ))
       }
     </div>
-    <h3 class="subhead">Off project, I activelty participate in the following:</h3>
+    <h3 class="subhead">Off project, I actively participate in the following:</h3>
     <div class="services">
       {
         about.interests.map((interest, i) => (
           <div class="service">
             <h4>{interest.title}</h4>
             <p class="eyebrow">{interest.description}</p>
-            <a href="{interest.href}">Link</a>
+            <a href={interest.href}>Link</a>
           </div>
         ))
       }

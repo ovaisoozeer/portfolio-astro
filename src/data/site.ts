@@ -50,7 +50,7 @@ export const about = {
     {
       title: 'Ramen Club',
       description: 'Founder community leaning heavily into AI.',
-      href: 'https://generalist.world/'
+      href: 'https://ramenclub.com/'
     },
   ],
 };
