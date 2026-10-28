@@ -8,6 +8,7 @@ tags: [Platform engineering, Coaching]
 link:
   label: www.mms.com
   href: https://www.mms.com/en-gb
+featured: true
 ---
 
 I was tasked to set up a team, delivering coaching and tooling as needed.

@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { experience } from '../data/site';
+---
+
+<BaseLayout title="Career" description="Roles and organisations I've worked with over the years.">
+  <section class="section container">
+    <h1>Career</h1>
+    <ol class="timeline">
+      {
+        experience.map((job) => (
+          <li class="job">
+            <p class="dates">
+              {job.start} — {job.end}
+            </p>
+            <div>
+              <h2>
+                {job.role} <span class="company">@ {job.company}</span>
+              </h2>
+              <p class="job-summary">{job.summary}</p>
+              {job.highlights && (
+                <ul>
+                  {job.highlights.map((h) => <li>{h}</li>)}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    margin: 0 0 2.5rem;
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .job {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+  }
+
+  .dates {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .job h2 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .company {
+    color: var(--link);
+  }
+
+  .job-summary {
+    margin: 0.25rem 0 0.5rem;
+    color: var(--muted);
+  }
+
+  .job ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  @media (max-width: 640px) {
+    .job {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

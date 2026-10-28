@@ -3,11 +3,10 @@
 export const site = {
   siteName: 'Ovais Oozeer',
   name: 'Ovais',
-  role: 'əʊveɪs | he/him',
+  role: '( əʊveɪs | he/him )',
   email: 'ovais@expertlypragmatic.com',
   phone: { display: '07739 400855', href: 'tel:+447739400855' },
   calendarUrl: 'https://calendar.app.google/PteCMAz5AeiBRbrp9',
-  tagline: 'What brings you here?',
   description:
     'Portfolio of Ovais Oozeer, a software developer building web applications, APIs and developer tooling.',
   resumeUrl: '/cv.pdf', // leave empty to hide the button
@@ -33,16 +32,6 @@ export const about = {
   ],
   interests: [
     {
-      title: 'Content',
-      description: 'A substack exists with my weird and wonderful thoughts.',
-      href: 'https://devgutfeel.substack.com/'
-    },
-    {
-      title: 'Events',
-      description: 'Currently running a meet-up for inspired folks in need of guidance. On Luma, search for "Incomplete Ideas."',
-      href: 'https://luma.com/'
-    },
-    {
       title: 'Generalist World',
       description: 'A community of multi-disciplinary professionals.',
       href: 'https://generalist.world/'
@@ -51,6 +40,16 @@ export const about = {
       title: 'Ramen Club',
       description: 'Founder community leaning heavily into AI.',
       href: 'https://ramenclub.com/'
+    },
+    {
+      title: 'Content',
+      description: 'A substack exists with my weird and wonderful thoughts.',
+      href: 'https://devgutfeel.substack.com/'
+    },
+    {
+      title: 'Events',
+      description: 'Currently running a meet-up for inspired folks in need of guidance. On Luma, search for "Incomplete Ideas."',
+      href: 'https://luma.com/'
     },
   ],
 };
@@ -102,13 +101,6 @@ export const otherClients: { client: string; project: string; role: string; href
     href: 'https://www.gov.uk/apply-apprenticeship',
   },
   { client: 'DeVere', project: 'Venues Website', role: 'Developer', href: 'https://www.devere.co.uk/' },
-];
-
-export const skills: { group: string; items: string[] }[] = [
-  { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'Go', 'SQL'] },
-  { group: 'Front end', items: ['Astro', 'React', 'HTML & CSS', 'Accessibility', 'Vite'] },
-  { group: 'Back end', items: ['Node.js', 'REST & GraphQL', 'PostgreSQL', 'Redis', 'Message queues'] },
-  { group: 'Tooling & cloud', items: ['AWS', 'Docker', 'GitHub Actions', 'Terraform', 'Observability'] },
 ];
 
 export const experience: {

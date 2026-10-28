@@ -13,7 +13,7 @@ npm run preview  # serve the built site
 
 ## Making it yours
 
-- **Personal details, skills and experience**: `src/data/site.ts`
+- **Personal details, services and career history**: `src/data/site.ts`
 - **Projects**: add a Markdown file to `src/content/projects/`. The frontmatter is validated by `src/content.config.ts`:
 
   ```md

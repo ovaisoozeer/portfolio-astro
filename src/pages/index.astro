@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { site, about, skills, experience } from '../data/site';
+import { site, about } from '../data/site';
 
 const featured = (await getCollection('projects', ({ data }) => data.featured))
   .sort((a, b) => a.data.order - b.data.order)
@@ -14,17 +14,11 @@ const featured = (await getCollection('projects', ({ data }) => data.featured))
     <p class="eyebrow">Hi, my name is</p>
     <h1>{site.name}</h1>
     <p class="role">{site.role}</p>
-    <p class="tagline">{site.tagline}</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#about">Curiosity</a>
-      <a class="btn" href="#contact">Collaboration</a>
-      <a class="btn" href="/projects">Consumption</a>
-    </div>
   </section>
 
   <section id="about" class="section container about">
-    <h2 class="section-title">About</h2>
-    <h3 class="subhead">I'm a Generalist Solution Architect. On projects you'll most likely find me in one of the following roles:</h3>
+    <h2 class="section-title">I'm a Generalist Solution Architect, comfortable in both the problem and solution space.</h2>
+    <h3 class="subhead">On projects you'll probably find me in these roles:</h3>
     <div class="services">
       {
         about.services.map((service, i) => (
@@ -50,22 +44,6 @@ const featured = (await getCollection('projects', ({ data }) => data.featured))
     </div>
   </section>
 
-  <section id="skills" class="section container">
-    <h2 class="section-title">Skills</h2>
-    <div class="skills">
-      {
-        skills.map(({ group, items }) => (
-          <div class="skill-group">
-            <h3>{group}</h3>
-            <ul class="tags">
-              {items.map((item) => <li class="tag">{item}</li>)}
-            </ul>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
   <section id="projects" class="section container">
     <div class="section-head">
       <h2 class="section-title">Featured projects</h2>
@@ -73,43 +51,6 @@ const featured = (await getCollection('projects', ({ data }) => data.featured))
     </div>
     <div class="grid">
       {featured.map((project) => <ProjectCard project={project} />)}
-    </div>
-  </section>
-
-  <section id="experience" class="section container">
-    <h2 class="section-title">Career</h2>
-    <ol class="timeline">
-      {
-        experience.map((job) => (
-          <li class="job">
-            <p class="dates">
-              {job.start} — {job.end}
-            </p>
-            <div>
-              <h3>
-                {job.role} <span class="company">@ {job.company}</span>
-              </h3>
-              <p class="job-summary">{job.summary}</p>
-              {job.highlights && (
-                <ul>
-                  {job.highlights.map((h) => <li>{h}</li>)}
-                </ul>
-              )}
-            </div>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
-
-  <section id="contact" class="section container contact">
-    <h2 class="section-title">Contact</h2>
-    <p>Reach out for a virtual or IRL (preferred) coffee and chat.</p>
-    <div class="contact-actions">
-      <a class="btn btn-primary" href={`mailto:${site.email}`}>{site.email}</a>
-      <a class="btn" href={site.phone.href}>{site.phone.display}</a>
-      <a class="btn" href={site.calendarUrl}>Book a meeting</a>
-      {site.resumeUrl && <a class="btn" href={site.resumeUrl}>Download CV</a>}
     </div>
   </section>
 </BaseLayout>
@@ -127,19 +68,7 @@ const featured = (await getCollection('projects', ({ data }) => data.featured))
   .role {
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     color: var(--muted);
-    margin: 0.5rem 0 1.5rem;
-  }
-
-  .tagline {
-    font-size: 1.15rem;
-    max-width: 38rem;
-    margin: 0 0 2rem;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    margin: 0.5rem 0 0;
   }
 
   .prose {
@@ -177,17 +106,6 @@ const featured = (await getCollection('projects', ({ data }) => data.featured))
     color: var(--muted);
   }
 
-  .skills {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-    gap: 1.5rem;
-  }
-
-  .skill-group h3 {
-    font-size: 1rem;
-    margin: 0 0 0.75rem;
-  }
-
   .section-head {
     display: flex;
     justify-content: space-between;
@@ -199,69 +117,5 @@ const featured = (await getCollection('projects', ({ data }) => data.featured))
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: 1.25rem;
-  }
-
-  .timeline {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 2rem;
-  }
-
-  .job {
-    display: grid;
-    grid-template-columns: 9rem 1fr;
-    gap: 1rem;
-  }
-
-  .dates {
-    margin: 0.2rem 0 0;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  .job h3 {
-    margin: 0;
-    font-size: 1.1rem;
-  }
-
-  .company {
-    color: var(--link);
-  }
-
-  .job-summary {
-    margin: 0.25rem 0 0.5rem;
-    color: var(--muted);
-  }
-
-  .job ul {
-    margin: 0;
-    padding-left: 1.1rem;
-  }
-
-  .contact {
-    text-align: center;
-  }
-
-  .contact p {
-    max-width: 34rem;
-    margin: 0 auto 1.5rem;
-    color: var(--muted);
-  }
-
-  .contact-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
-  @media (max-width: 640px) {
-    .job {
-      grid-template-columns: 1fr;
-      gap: 0.25rem;
-    }
   }
 </style>
