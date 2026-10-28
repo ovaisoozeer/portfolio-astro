@@ -7,7 +7,7 @@ export const site = {
   email: 'ovais@expertlypragmatic.com',
   phone: { display: '07739 400855', href: 'tel:+447739400855' },
   calendarUrl: 'https://calendar.app.google/PteCMAz5AeiBRbrp9',
-  tagline: 'I\'m a Generalist Solution Architect. Please choose the theme that best describes the reason for your visit...',
+  tagline: 'What brings you here?',
   description:
     'Portfolio of Ovais Oozeer, a software developer building web applications, APIs and developer tooling.',
   resumeUrl: '/cv.pdf', // leave empty to hide the button
@@ -16,27 +16,20 @@ export const site = {
     { label: 'Phone', href: 'tel:+447739400855' },
     { label: 'Book a meeting', href: 'https://calendar.app.google/PteCMAz5AeiBRbrp9' },
     { label: 'GitHub', href: 'https://github.com/ovaisoozeer' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/ovais-oozeer' },
   ],
 };
 
 export const about = {
   services: [
     {
-      types: 'Solution Architecture, Facilitation, Servant Leadership',
-      title: 'Fractional lead',
-      description:
-        'I apply my experience to deeply understand and steer teams. By working fractionally (one day or more per week), I am able to split the rest of my time between other clients and personal development - which you benefit from. I focus my insights and contributions on helping your organisation achieve its long term vision.',
+      title: 'Solution Architect',
+      types: 'Analysing problems holistically, designing solutions pragmatically, and engaging the right people in the right conversations at the right time.'
     },
     {
-      types: 'Full time implementation for a scoped project',
-      title: 'Application build',
-      description:
-        'I am a competent tech lead and can coach your team as a contributor. However, as this is highly demanding I do not commit to prolonged engagements.',
+      title: 'Individual Contributor',
+      types: 'As a hands-on tech lead, managing goals and expectations for the team, coaching individuals, and ensuring quality output is sustainable.'
     },
-  ],
-  pricing: [
-    'This depends on whether the work is fractional vs full-time, leadership vs contributing, or outcome- vs output-based.',
-    'I operate through Expertly Pragmatic Ltd (VAT-registered).',
   ],
 };
 
@@ -117,7 +110,7 @@ export const experience: {
     start: '2015',
     end: '2024',
     summary:
-      'Several years of architecture assessment, greenfield development, and leading teams. Completed over 20 projects. Led the development and architecture communities through acquisition and capability mapping.',
+      'Several years of architecture assessment, greenfield development, and leading teams. Completed over 20 projects. Led the development and architecture communities through acquisitions.',
   },
   {
     role: 'Senior Developer in Digital Marketing',
